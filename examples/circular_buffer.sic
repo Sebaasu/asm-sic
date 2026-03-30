@@ -1,0 +1,30 @@
+; Ejercicio 19: Buffer Circular Dinámico
+; Enunciado: Diseñar un programa en ensamblador para el procesador SIC de 18 bits 
+; que gestione un buffer circular de 8 posiciones. El programa debe insertar 
+; un dato y actualizar el puntero de escritura de forma cíclica (0-7).
+
+    ORG 0o1000
+START:
+    LAC     PUNTERO_ESCR ; Cargar índice actual
+    DTA                  ; Transferir índice al Registro Indice A
+    LAC     DATO_ENTRADA ; Cargar dato a insertar
+    DAC IA  BUFFER       ; Guardar dato en la posición circular actual
+    ISZ     PUNTERO_ESCR ; Incrementar índice para la siguiente operación
+; Verificar si el puntero excedió el límite del buffer (8 elementos)
+    LAC     PUNTERO_ESCR
+    TAD     MASCARA_CIRC ; AC = PUNTERO - 8 (octal 10?) 
+    ; Wait, the code in MD said TAD 112 (MASCARA_CIRC = -7). 
+    ; If puntero is 8, 8-7=1. SKP skips JMP DONE. Correct.
+    SKP                  ; Si AC > 0 (Puntero >= 8), no saltamos
+    JMP     DONE         ; Si AC <= 0, puntero dentro de límites
+; Reinicio de puntero (Circularidad)
+    CLA
+    DAC     PUNTERO_ESCR ; Resetear índice a 0
+DONE:
+    HLT
+
+    ORG 0o100
+BUFFER:       DATA 0, 0, 0, 0, 0, 0, 0, 0 ; 8 posiciones
+PUNTERO_ESCR: DATA 0d0
+DATO_ENTRADA: DATA 0xDEAD
+MASCARA_CIRC: DATA -0o7    ; Usada para evaluar el límite 7 (octal)

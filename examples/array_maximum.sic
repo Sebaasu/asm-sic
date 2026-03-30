@@ -1,0 +1,35 @@
+; Ejercicio 17: Encontrar el Máximo de un Arreglo
+; Enunciado: Diseñar un programa en ensamblador para el procesador SIC de 18 bits 
+; que recorra un arreglo de números positivos y determine cuál es el valor más grande.
+
+    ORG 0o1000
+START:
+    ; Inicialización
+    CLA
+    DTA             ; IA apuntará al primer elemento del arreglo
+    DAC     VALOR_MAXIMO ; Inicializar máximo en 0
+LOOP:
+    ; Etapa 1: Cargar valor máximo y obtener complemento a dos (para resta)
+    LAC     VALOR_MAXIMO
+    CMA
+    TAD     CTE_1
+    TAD IA  ARREGLO     ; Comparar: AC = ARREGLO[IA] - VALOR_MAXIMO
+    SKP                 ; Si AC > 0 (Dato > Max), no saltamos JMP NEXT
+    JMP     NEXT        ; Si AC <= 0, no hay nuevo máximo
+; Actualizar máximo encontrado
+    LAC IA  ARREGLO
+    DAC     VALOR_MAXIMO
+; Preparar el siguiente bucle
+NEXT:
+    INA             ; Siguiente índice
+    ISZ     LONGITUD ; Decrementar contador
+    JMP     LOOP
+    HLT
+
+    ORG 0o100
+ARREGLO:      DATA 0d10, 0d50, 0d20, 0d100, 0d5, 0d80, 0d40, 0d10
+              DATA 0d1, 0d2, 0d3, 0d4, 0d5, 0d6, 0d7, 0d8
+LONGITUD:     DATA -0o20   ; 20 elementos en octal
+    ORG 0o150
+VALOR_MAXIMO: DATA 0d0
+CTE_1:        DATA 0o1     ; Usada para complemento a 2

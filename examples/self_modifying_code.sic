@@ -1,0 +1,21 @@
+; Ejercicio 20: Código Automodificable
+; Enunciado: Diseñar un programa en ensamblador para el procesador SIC de 18 bits 
+; que altere su propia lógica en tiempo de ejecución. El objetivo es modificar 
+; la dirección de operando de una instrucción DAC dentro de un bucle para 
+; rellenar un bloque de memoria sin usar registros de índice.
+
+    ORG 0o1000
+START:
+    LAC     RELLENO      ; Cargar dato de relleno
+ST_INST:
+    DAC     ZONA_RELLENO ; Esta instrucción será modificada dinámicamente
+    ISZ     ST_INST      ; Incrementar la instrucción completa (modifica el argumento LSB)
+    ISZ     CONTADOR     ; Control de bucle
+    JMP     START
+    HLT
+
+    ORG 0o100
+RELLENO:      DATA 0x77777 ; Dato para rellenar la memoria
+CONTADOR:     DATA -0o10   ; Rellenar 8 posiciones (10 octal)
+    ORG 0o150
+ZONA_RELLENO: DATA 0, 0, 0, 0, 0, 0, 0, 0

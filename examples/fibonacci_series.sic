@@ -1,0 +1,28 @@
+; Ejercicio 18: Serie de Fibonacci
+; Enunciado: Diseñar un programa en ensamblador para el procesador SIC de 18 bits 
+; que genere los primeros 14 (octal) términos de la sucesión de Fibonacci 
+; y los almacene en un arreglo de memoria.
+
+    ORG 0o1000
+START:
+    ; Inicializar registros índices
+    CLA
+    DTA             ; IA apuntará al término n-2 (inicialmente FIB_0)
+    DTB
+    INB             ; IB apuntará al término n-1 (inicialmente FIB_1)
+; Cálculo del siguiente término
+LOOP:
+    LAC IA  FIB_0   ; Cargar término n-2
+    TAD IB  FIB_0   ; Sumar con término n-1
+    INA             ; IA ahora apunta al término n-1 previo
+    INB             ; IB ahora apunta a la posición del nuevo término n
+    DAC IB  FIB_0   ; Depositar siguiente término calculado
+    ISZ     CONTADOR ; Control de bucle
+    JMP     LOOP
+    HLT
+
+    ORG 0o100
+FIB_0:    DATA 0d0     ; Primer término
+FIB_1:    DATA 0d1     ; Segundo término
+SUCESION: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ; Espacio para los siguientes términos
+CONTADOR: DATA -0o12   ; Calcular 10 términos adicionales (total 12 decimal = 14 octal)

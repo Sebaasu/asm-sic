@@ -1,0 +1,34 @@
+; Ejercicio 15: Suma de Dos Vectores
+; Enunciado: Diseñar un programa en ensamblador para el procesador SIC de 18 bits 
+; que sume elemento por elemento dos vectores de longitud 10 (octal). 
+; Se recomienda el uso del Registro de Índice para optimizar el acceso.
+
+    ORG 0o1000
+START:
+    CLA             ; Inicializar Registro Indice A y Link Flag
+    DTA
+    CLL
+LOOP:
+    LAC IA  VECTOR_1 ; Sumar dos términos y sumar 1 si LF=1 (acarreo anterior)
+    SZL
+    TAD     CTE_1    ; Sumar constante uno si hubo acarreo previo
+    TAD IA  VECTOR_2
+    DAC IA  VECTOR_SUMA
+    INA             ; Incrementar puntero de índice
+    ISZ     CONTADOR ; Control de bucle
+    JMP     LOOP     ; Repetir para el siguiente elemento
+; Considerando acarreo final
+    CLA
+    SZL
+    TAD     CTE_1    ; Sumar constante uno si hay acarreo final
+    DAC IA  VECTOR_SUMA
+    HLT
+
+    ORG 0o100
+VECTOR_1:    DATA 0o1, 0o2, 0o3, 0o4, 0o5, 0o6, 0o7, 0o10 ; 10 (octal) elementos
+    ORG 0o120
+VECTOR_2:    DATA 0o10, 0o20, 0o30, 0o40, 0o50, 0o60, 0o70, 0o100
+    ORG 0o140
+VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+CTE_1:       DATA 0o1
+CONTADOR:    DATA -0o10 ; 10 (octal) elementos a procesar

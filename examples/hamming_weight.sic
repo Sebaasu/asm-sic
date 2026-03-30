@@ -1,0 +1,20 @@
+; Ejercicio 16: Conteo de Bits Encendidos (Hamming Weight)
+; Enunciado: Diseñar un programa en ensamblador para el procesador SIC de 18 bits 
+; que cuente cuántos bits están en "1" dentro de una palabra de 18 bits. 
+; Se debe rotar el acumulador bit a bit y evaluar el bit de enlace (Link).
+
+    ORG 0o1000
+START:
+    LAC     DATO      ; Cargar dato a evaluar
+LOOP:
+    RAL               ; Rotar izquierda (el bit más significativo pasa al Link)
+    SZL               ; Evaluar Link Flag (si es 1, el bit rotado era 1)
+    ISZ     CUENTA_BITS ; Incrementar contador de bits si Link era 1
+    ISZ     ITERACIONES ; Control de bucle (18 bits = 22 octal)
+    JMP     LOOP
+    HLT
+
+    ORG 0o100
+DATO:        DATA 0x2AAAA ; Palabra de ejemplo (101010...)
+CUENTA_BITS: DATA 0d0     ; Resultado
+ITERACIONES: DATA -0o22   ; Contador para los 18 bits de la arquitectura

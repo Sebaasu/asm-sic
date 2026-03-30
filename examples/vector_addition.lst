@@ -1,0 +1,44 @@
+ADDR     VALUE      SOURCE LINE
+--------------------------------------------------
+01000    701000     CLA             ; Inicializar Registro Indice A y Link Flag
+01001    700100     DTA
+01002    704000     CLL
+01003    140100     LAC IA  VECTOR_1 ; Sumar dos términos y sumar 1 si LF=1 (acarreo anterior)
+01004    700020     SKL
+01005    300151     TAD     CTE_1    ; Sumar constante uno si hubo acarreo previo
+01006    340120     TAD IA  VECTOR_2
+01007    540140     DAC IA  VECTOR_SUMA
+01010    700120     INA             ; Incrementar puntero de índice
+01011    000152     ISZ     CONTADOR ; Control de bucle
+01012    601003     JMP     LOOP     ; Repetir para el siguiente elemento
+01013    701000     CLA
+01014    700020     SKL
+01015    300151     TAD     CTE_1    ; Sumar constante uno si hay acarreo final
+01016    540140     DAC IA  VECTOR_SUMA
+01017    706000     HLT
+00100    000001     VECTOR_1:    DATA 0o1, 0o2, 0o3, 0o4, 0o5, 0o6, 0o7, 0o10 ; 10 (octal) elementos
+00101    000002     VECTOR_1:    DATA 0o1, 0o2, 0o3, 0o4, 0o5, 0o6, 0o7, 0o10 ; 10 (octal) elementos
+00102    000003     VECTOR_1:    DATA 0o1, 0o2, 0o3, 0o4, 0o5, 0o6, 0o7, 0o10 ; 10 (octal) elementos
+00103    000004     VECTOR_1:    DATA 0o1, 0o2, 0o3, 0o4, 0o5, 0o6, 0o7, 0o10 ; 10 (octal) elementos
+00104    000005     VECTOR_1:    DATA 0o1, 0o2, 0o3, 0o4, 0o5, 0o6, 0o7, 0o10 ; 10 (octal) elementos
+00105    000006     VECTOR_1:    DATA 0o1, 0o2, 0o3, 0o4, 0o5, 0o6, 0o7, 0o10 ; 10 (octal) elementos
+00106    000007     VECTOR_1:    DATA 0o1, 0o2, 0o3, 0o4, 0o5, 0o6, 0o7, 0o10 ; 10 (octal) elementos
+00107    000010     VECTOR_1:    DATA 0o1, 0o2, 0o3, 0o4, 0o5, 0o6, 0o7, 0o10 ; 10 (octal) elementos
+00120    000010     VECTOR_2:    DATA 0o10, 0o20, 0o30, 0o40, 0o50, 0o60, 0o70, 0o100
+00121    000020     VECTOR_2:    DATA 0o10, 0o20, 0o30, 0o40, 0o50, 0o60, 0o70, 0o100
+00122    000030     VECTOR_2:    DATA 0o10, 0o20, 0o30, 0o40, 0o50, 0o60, 0o70, 0o100
+00123    000040     VECTOR_2:    DATA 0o10, 0o20, 0o30, 0o40, 0o50, 0o60, 0o70, 0o100
+00124    000050     VECTOR_2:    DATA 0o10, 0o20, 0o30, 0o40, 0o50, 0o60, 0o70, 0o100
+00125    000060     VECTOR_2:    DATA 0o10, 0o20, 0o30, 0o40, 0o50, 0o60, 0o70, 0o100
+00126    000070     VECTOR_2:    DATA 0o10, 0o20, 0o30, 0o40, 0o50, 0o60, 0o70, 0o100
+00127    000100     VECTOR_2:    DATA 0o10, 0o20, 0o30, 0o40, 0o50, 0o60, 0o70, 0o100
+00140    000000     VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+00141    000000     VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+00142    000000     VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+00143    000000     VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+00144    000000     VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+00145    000000     VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+00146    000000     VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+00147    000000     VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+00150    000000     VECTOR_SUMA: DATA 0, 0, 0, 0, 0, 0, 0, 0, 0 ; 10 elementos + 1 para acarreo final
+00151    000001     CTE_1:       DATA 0o1
