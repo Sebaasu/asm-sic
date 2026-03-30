@@ -6,7 +6,7 @@ A robust, two-pass assembler for the **Simplified Instructional Computer (SIC)**
 
 ---
 
-## 🇪🇸 Resumen (Español)
+## Resumen (Español)
 Este es un ensamblador profesional para el computador educativo SIC. Traduce archivos de texto `.sic` a lenguaje de máquina en diversos formatos compatibles con FPGAs y simuladores Verilog.
 
 **Características principales:**
@@ -17,7 +17,7 @@ Este es un ensamblador profesional para el computador educativo SIC. Traduce arc
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
 Ensure you have Python 3.x installed. No external dependencies required.
@@ -45,7 +45,7 @@ python3 assembler.py input.sic -o output_name --hex --lst
 
 ---
 
-## 📝 Syntax Overview
+## Syntax Overview
 ```asm
     ORG 0x0        ; Set start address
 START:
@@ -59,11 +59,11 @@ For more details, see [assembler.md](assembler.md).
 
 ---
 
-## ⚠️ Upgrading from V1.0?
+## Upgrading from V1.0?
 If you have code written for the previous version, please read the [MIGRATION.md](MIGRATION.md) guide to understand how to replace `DEC`, `OCT`, and `HEX` with the new `DATA` directive.
 
-## 🤖 AI & Integration
+## AI & Integration
 If you are using an LLM (like ChatGPT, Claude, or Gemini) to generate code for this assembler, provide it with the [GEMINI.md](GEMINI.md) file as context.
 
-## 📄 License
+## License
 Distributed under the **MIT License**. See `LICENSE` for more information.
