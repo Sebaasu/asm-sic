@@ -27,6 +27,7 @@ This file provides the technical context for Large Language Models (LLMs) to und
   - `NOP`: 700000 | `HLT`: 706000 | `CLA`: 701000 | `CMA`: 701400
   - `STA`: 700400 | `CLL`: 704000 | `RAL`: 710000 | `RAR`: 730000
   - `SKZ`: 700004 | `SKP`: 700002 | `SKN`: 700001 | `INA`: 700120
+  - `IN`: 760000 | `OUT`: 740000
 - **Note:** IOP instructions can be combined in a single line (e.g., `CLA CMA`).
 
 ## Syntax Rules

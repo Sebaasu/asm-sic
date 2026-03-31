@@ -19,7 +19,8 @@ OPCODES_IOP = {
     "RAR": 0o730000, "RAL2": 0o710200, "RAR2": 0o730200, "RAL3": 0o710210,
     "RAR3": 0o730210, "SKZ": 0o700004, "SKP": 0o700002, "SKN": 0o700001,
     "SZL": 0o700020, "DTA": 0o700100, "DTB": 0o700140, "DFA": 0o700040,
-    "DFB": 0o700060, "INA": 0o700120, "INB": 0o700160
+    "DFB": 0o700060, "INA": 0o700120, "INB": 0o700160,
+    "IN":  0o760000, "OUT": 0o740000
 }
 
 class AssemblerV2:
@@ -181,14 +182,14 @@ class AssemblerV2:
         # .hex (Verilog readmemh)
         if 'hex' in formats:
             with open(base_path + ".hex", 'w') as f:
-                for i in range(max(self.max_addr, 1)):
+                for i in range(DEPTH):
                     f.write(f"{format(self.instructions[i], '05x')}\n")
             print(f" -> {base_path}.hex generado")
         
         # .bin (Verilog readmemb)
         if 'bin' in formats:
             with open(base_path + ".bin", 'w') as f:
-                for i in range(max(self.max_addr, 1)):
+                for i in range(DEPTH):
                     f.write(f"{format(self.instructions[i], '018b')}\n")
             print(f" -> {base_path}.bin generado")
 

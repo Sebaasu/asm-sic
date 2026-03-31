@@ -1,0 +1,6 @@
+ORG 0
+    IN
+    TAD     UNO
+    OUT
+    HLT
+UNO: DATA 0o777763
