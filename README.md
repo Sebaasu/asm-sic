@@ -22,7 +22,7 @@ Este es un ensamblador profesional para el computador educativo SIC. Traduce arc
 ### Installation
 Ensure you have Python 3.x installed. No external dependencies required.
 ```bash
-git clone https://github.com/youruser/asm-sic.git
+git clone https://github.com/Sebaasu/asm-sic.git
 cd asm-sic
 ```
 
